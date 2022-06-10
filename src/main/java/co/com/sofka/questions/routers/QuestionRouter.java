@@ -49,16 +49,14 @@ public class QuestionRouter {
 
     @Bean
 
-    @RouterOperation(path = "/getOwnerAll/{userId}"
+    @RouterOperation(path = "/getOwnerAll/{Id}"
             , produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.GET, beanClass = OwnerListUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "apply",
                     responses = { @ApiResponse(responseCode = "200", description = "get Owner All",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Question not found")},
-                    parameters = {
-                            @Parameter(in = ParameterIn.PATH, name = "userId")})
+                            @ApiResponse(responseCode = "404", description = "Question not found")})
     )
     public RouterFunction<ServerResponse> getOwnerAll(OwnerListUseCase ownerListUseCase) {
         return route(
@@ -104,9 +102,8 @@ public class QuestionRouter {
                     responses = { @ApiResponse(responseCode = "200", description = "get",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Question not found")},
-                    parameters = {
-                            @Parameter(in = ParameterIn.PATH, name = "userId")})
+                            @ApiResponse(responseCode = "404", description = "Question not found")}
+                    )
     )
     public RouterFunction<ServerResponse> get(GetUseCase getUseCase) {
         return route(
@@ -151,9 +148,7 @@ public class QuestionRouter {
                     responses = { @ApiResponse(responseCode = "200", description = "deleted",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "question not found")},
-                    parameters = {
-                            @Parameter(in = ParameterIn.PATH, name = "Id")})
+                            @ApiResponse(responseCode = "404", description = "question not found")})
     )
     public RouterFunction<ServerResponse> delete(DeleteUseCase deleteUseCase) {
         return route(
