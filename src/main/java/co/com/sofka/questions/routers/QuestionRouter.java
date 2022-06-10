@@ -60,7 +60,7 @@ public class QuestionRouter {
     )
     public RouterFunction<ServerResponse> getOwnerAll(OwnerListUseCase ownerListUseCase) {
         return route(
-                GET("/getOwnerAll/{userId}"),
+                GET("/getOwnerAll/{Id}"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(
