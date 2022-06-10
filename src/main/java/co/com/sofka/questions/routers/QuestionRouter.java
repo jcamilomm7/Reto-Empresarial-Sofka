@@ -121,18 +121,17 @@ public class QuestionRouter {
     }
 
     @Bean
-    @RouterOperations(
-            {
-                    @RouterOperation(path = "/add"
-                            , produces = {
-                            MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, beanClass = AddAnswerUseCase.class, beanMethod = "apply",
-                            operation = @Operation(operationId = "apply",
-                                    responses = { @ApiResponse(responseCode = "200", description = "successful operation",
-                                            content = @Content(schema = @Schema(implementation = AnswerDTO.class))),
-                                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                                            @ApiResponse(responseCode = "404", description = "Employee not found")}
-                                    , requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = AnswerDTO.class))))
-                    )})
+
+    @RouterOperation(path = "/add"
+            , produces = {
+            MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, beanClass = AddAnswerUseCase.class, beanMethod = "apply",
+            operation = @Operation(operationId = "apply",
+                    responses = { @ApiResponse(responseCode = "200", description = "successful operation",
+                            content = @Content(schema = @Schema(implementation = AnswerDTO.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
+                            @ApiResponse(responseCode = "404", description = "Employee not found")}
+                    , requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = AnswerDTO.class))))
+    )
     public RouterFunction<ServerResponse> addAnswer(AddAnswerUseCase addAnswerUseCase) {
         return route(POST("/add").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(AnswerDTO.class)
