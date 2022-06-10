@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { QuestionI } from 'src/app/models/question-i';
 import { QuestionService } from 'src/app/Service/question.service';
 import { ServiceService } from 'src/app/Service/service.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-preguntas',
@@ -23,7 +24,8 @@ export class PreguntasComponent implements OnInit {
 
   constructor(
     private service: QuestionService,
-    public authService: ServiceService
+    public authService: ServiceService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
@@ -32,23 +34,36 @@ export class PreguntasComponent implements OnInit {
     this.getQuestionsAll();
   }
 
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
   getQuestionsAll(): void {
     this.service.getQuestionAll().subscribe(value =>{
-      console.log(value)
       this.questions = value
+      this.totalQuestions = this.questions.length
+        this.pages = new Array(Math.ceil(this.totalQuestions / 10))
+           console.log(this.pages)
   });
   }
 
   getQuestions(): void {
     this.userLogged.subscribe(value =>{
         this.uid=value?.uid
+
     });
     this.service.getPage(this.page).subscribe((data) => {
         this.questions = data;
+
+
     });
     this.service
       .getTotalPages()
-      .subscribe((data) => (this.pages = new Array(data)));
+      .subscribe((data) => {
+        this.pages = new Array(data)
+
+      });
     this.service
       .getCountQuestions()
       .subscribe((data) => (this.totalQuestions = data));
@@ -81,6 +96,7 @@ export class PreguntasComponent implements OnInit {
       if (value?.email == undefined) {
         this.disabled = true;
       } else {
+        console.log(value)
         this.disabled = false;
       }
     });

@@ -12,7 +12,9 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          <h5 class="text-center promedio-calificacion">Promedio de calificacion:</h5>
+          <h5 class="text-center promedio-calificacion">
+            Promedio de calificacion:
+          </h5>
           <p-rating
             [cancel]="false"
             [(ngModel)]="promedio"
@@ -23,7 +25,7 @@
         </button>
       </h2>
     </div>
-    <div class="col-2">
+    <div class="col-6">
       <div class="card text-center">
         <div class="card-header fs-1 font1">
           {{ question?.answers?.length }}
@@ -34,7 +36,7 @@
         <div class="card-footer text-muted"></div>
       </div>
     </div>
-    <div class="col-5">
+    <div class="col-6">
       <div class="card text-center">
         <div class="card-header fs-1 font1">
           {{ question?.question }}
@@ -48,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="col-5">
+    <div  class="col-12 div-respuesta">
       <div
         class="accordion"
         id="accordionExample"
@@ -74,6 +76,67 @@
               <!-- Respuesta -->
             </button>
           </h2>
+
+          <!-- PRUEBA  -->
+          <ng-template #content let-modal>
+            <div class="modal-body">
+              <div class="container">
+                <div class="card text-center">
+                  <div class="card-header fs-4 font1"  >
+                    <b>Actualiza tu respuesta</b>
+                  </div>
+                  <div class="card-body p-4">
+                    <div class="form-floating">
+                      <textarea
+                        [(ngModel)]="questions.answer"
+                        class="form-control m-2"
+                        placeholder="Leave a comment here"
+                        id="question"
+                        style="height: 150px"
+                      ></textarea>
+                      <label for="floatingTextarea">Respuesta</label>
+                    </div>
+                    <p-rating
+                      [cancel]="false"
+                      [(ngModel)]="questions.position"
+                    ></p-rating>
+                    <br />
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Actualizar respuesta"
+                      class="p-button-outlined p-button-info"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Cerrar"
+                class="p-button-outlined p-button-secondary"
+                (click)="modal.close('Close click')"
+              ></button>
+            </div>
+          </ng-template>
+
+          <div >
+          <button
+            *ngIf="user?.uid ==questions.userId"
+            class="btn btn-outline-primary mb-2 me-2"
+            (click)="openVerticallyCentered(content)"
+          >
+            Editar
+          </button>
+          </div>
+          <!--   <button pButton pRipple type="button" disabled="true" label="Inicia Sesión Antes de Responder" class="p-button-outlined p-button-danger" *ngIf="!authService.userData"></button>
+  <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)" *ngIf="authService.userData">Contestar a esta pregunta</button> -->
+
           <div
             id="collapseOne"
             class="accordion-collapse collapse show"

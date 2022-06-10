@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNGModule } from './prime-ng/prime-ng.module';
@@ -30,12 +30,12 @@ import { EditComponent } from './paginas/edit/edit.component';
     LoginComponent,
     PreguntasComponent,
     NavbarComponent,
-    RegistroComponent, 
+    RegistroComponent,
     AnswerComponent,
     QuestionComponent,
     RequestionComponent,
     EditComponent
-       
+
   ],
   imports: [
     BrowserModule,
@@ -47,10 +47,11 @@ import { EditComponent } from './paginas/edit/edit.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot()
-    
-   
-    
+    ToastrModule.forRoot(),
+    NgxPaginationModule
+
+
+
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
