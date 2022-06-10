@@ -10,14 +10,15 @@ import { QuestionService } from 'src/app/Service/question.service';
   styleUrls: ['./requestion.component.css']
 })
 export class RequestionComponent implements OnInit {
-  
+
   question:QuestionI | undefined;
   answers: AnswerI[] | undefined;
   answersNew: AnswerI[]=[];
   currentAnswer:number=0;
-
   questions: QuestionI[] | undefined;
- 
+  estrellasTotal: number = 0
+  promedio: number = 0
+
   page: number = 0;
 
   constructor(
@@ -35,22 +36,32 @@ export class RequestionComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.getQuestions(`${id}`);
     this.get2();
-    
+
   }
-  
+
   get2(){
     let id = this.route.snapshot.paramMap.get('id');
-    
 
-    this.service.getAnswer(id).subscribe((data) => {  
-          this.answers = data.answers;
+
+    this.service.getAnswer(id).subscribe((data) => {
+      console.log(data)
+          data.answers.map
+
     });
   }
 
   getQuestions(id:string):void{
     this.questionService.getQuestion(id).subscribe(data=>{
       this.question=data;
-      this.answers = data.answers;
+      this.answers = data.answers.sort((a,b)=>{return b.position - a.position});
+      this.answers.map(respuesta => {
+        this.estrellasTotal += respuesta.position
+        this.promedio = this.estrellasTotal / data.answers.length
+
+      })
+
+
+
     })
 
   }

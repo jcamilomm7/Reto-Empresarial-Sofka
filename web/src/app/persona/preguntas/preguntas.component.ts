@@ -34,6 +34,7 @@ export class PreguntasComponent implements OnInit {
 
   getQuestionsAll(): void {
     this.service.getQuestionAll().subscribe(value =>{
+      console.log(value)
       this.questions = value
   });
   }
