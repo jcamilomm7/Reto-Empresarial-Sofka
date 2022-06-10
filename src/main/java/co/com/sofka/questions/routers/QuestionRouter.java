@@ -37,8 +37,8 @@ public class QuestionRouter {
                     responses = { @ApiResponse(responseCode = "200",
                             description = "get all",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Employee not found")}))
+                            @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
+                            @ApiResponse(responseCode = "404", description = "Question not found")}))
     public RouterFunction<ServerResponse> getAll(ListUseCase listUseCase) {
         return route(GET("/getAll"),
                 request -> ServerResponse.ok()
@@ -53,10 +53,10 @@ public class QuestionRouter {
             , produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.GET, beanClass = OwnerListUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "apply",
-                    responses = { @ApiResponse(responseCode = "200", description = "getOwnerAll",
+                    responses = { @ApiResponse(responseCode = "200", description = "get Owner All",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Employee not found")},
+                            @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
+                            @ApiResponse(responseCode = "404", description = "Question not found")},
                     parameters = {
                             @Parameter(in = ParameterIn.PATH, name = "userId")})
     )
@@ -101,10 +101,10 @@ public class QuestionRouter {
             , produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.GET, beanClass = GetUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "apply",
-                    responses = { @ApiResponse(responseCode = "200", description = "getOwnerAll",
+                    responses = { @ApiResponse(responseCode = "200", description = "get",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Employee not found")},
+                            @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
+                            @ApiResponse(responseCode = "404", description = "Question not found")},
                     parameters = {
                             @Parameter(in = ParameterIn.PATH, name = "userId")})
     )
@@ -128,8 +128,8 @@ public class QuestionRouter {
             operation = @Operation(operationId = "apply",
                     responses = { @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = AnswerDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Employee not found")}
+                            @ApiResponse(responseCode = "400", description = "Invalid operation"),
+                            @ApiResponse(responseCode = "404", description = "question not added")}
                     , requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = AnswerDTO.class))))
     )
     public RouterFunction<ServerResponse> addAnswer(AddAnswerUseCase addAnswerUseCase) {
@@ -148,10 +148,10 @@ public class QuestionRouter {
             , produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.DELETE, beanClass = DeleteUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "apply",
-                    responses = { @ApiResponse(responseCode = "200", description = "getOwnerAll",
+                    responses = { @ApiResponse(responseCode = "200", description = "deleted",
                             content = @Content(schema = @Schema(implementation = QuestionDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Employee ID supplied"),
-                            @ApiResponse(responseCode = "404", description = "Employee not found")},
+                            @ApiResponse(responseCode = "400", description = "Invalid question ID supplied"),
+                            @ApiResponse(responseCode = "404", description = "question not found")},
                     parameters = {
                             @Parameter(in = ParameterIn.PATH, name = "Id")})
     )
