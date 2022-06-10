@@ -64,7 +64,7 @@ public class QuestionRouter {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(
-                                ownerListUseCase.apply(request.pathVariable("userId")),
+                                ownerListUseCase.apply(request.pathVariable("Id")),
                                 QuestionDTO.class
                          ))
         );
