@@ -13,7 +13,7 @@ export class QuestionService {
   }
 
 
-  private url: string = 'https://reto-empresarial-sofka.herokuapp.com/';
+  private url: string = 'http://localhost:8080/';
 
 
   constructor(private http: HttpClient) {}
