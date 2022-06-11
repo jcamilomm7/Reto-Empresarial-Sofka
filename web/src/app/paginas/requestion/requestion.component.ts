@@ -62,7 +62,7 @@ export class RequestionComponent implements OnInit {
       this.answers = data.answers.sort((a, b) => {
         return b.position - a.position;
       });
-      console.log(this.answers)
+      console.log(this.answers);
       this.answers.map((respuesta) => {
         this.estrellasTotal += respuesta.position;
         this.promedio = this.estrellasTotal / data.answers.length;
