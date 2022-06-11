@@ -51,9 +51,9 @@ export class QuestionService {
 
   saveQuestion(question: QuestionI): Observable<any> {
     let direction = this.url + 'create';
-    return this.http.post<any>(direction, question, {
+    return this.http.post<any>(direction, question)/* {
       responseType: 'text' as 'json',
-    });
+    }); */
   }
 
   saveAnswer(answer: AnswerI): Observable<any> {

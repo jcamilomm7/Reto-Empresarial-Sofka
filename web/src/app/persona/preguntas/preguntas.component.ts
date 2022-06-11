@@ -3,6 +3,8 @@ import { QuestionI } from 'src/app/models/question-i';
 import { QuestionService } from 'src/app/Service/question.service';
 import { ServiceService } from 'src/app/Service/service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preguntas',
@@ -12,6 +14,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class PreguntasComponent implements OnInit {
   userLogged = this.authService.getUserLogged();
   uid: any;
+userData: any
+email: any ;
 
   totalQuestions: number = 0;
 
@@ -21,30 +25,37 @@ export class PreguntasComponent implements OnInit {
   page: number = 0;
   pages: Array<number> | undefined;
   disabled: boolean = false;
+  dataUser: any;
+
 
   constructor(
     private service: QuestionService,
     public authService: ServiceService,
     private modalService: NgbModal,
+    private afAuth: AngularFireAuth,
+     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getQuestions();
     this.traerdatos();
     this.getQuestionsAll();
+
+
+
   }
 
 
-  openVerticallyCentered(content: any) {
-    this.modalService.open(content, { centered: true });
-  }
 
   getQuestionsAll(): void {
+    this.userData =JSON.parse(localStorage.getItem('user')!);
+    this.email = this.userData?.email
     this.service.getQuestionAll().subscribe(value =>{
+      console.log(value)
       this.questions = value
       this.totalQuestions = this.questions.length
         this.pages = new Array(Math.ceil(this.totalQuestions / 10))
-           console.log(this.pages)
+
   });
   }
 
@@ -93,10 +104,11 @@ export class PreguntasComponent implements OnInit {
 
   traerdatos() {
     this.userLogged.subscribe((value) => {
-      if (value?.email == undefined) {
+
+      if (value?.email ) {
+        console.log("si existe")
         this.disabled = true;
       } else {
-        console.log(value)
         this.disabled = false;
       }
     });

@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    /* private authService: ServiceService, */
+    private authService: ServiceService,
     private route: Router,
     private afAuth: AngularFireAuth,
   ) {}
@@ -58,19 +58,19 @@ export class RegistroComponent implements OnInit {
         }, 2000);
       });
   }
- /*  ingresarGoogle() {
+  ingresarGoogle() {
     this.mostrar = !this.mostrar;
     this.authService
       .loginGoogle(this.form.value.email, this.form.value.password)
       .then((res) => {
         this.mostrar = !this.mostrar;
       });
-  } */
-/*   getUserLogged() {
+  }
+ getUserLogged() {
     this.authService.getUserLogged().subscribe((res) => {
     });
   }
-*/
+
   preguntasHome() {
     this.route.navigate(['preguntas']);
   }

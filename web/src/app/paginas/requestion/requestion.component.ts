@@ -50,8 +50,6 @@ export class RequestionComponent implements OnInit {
     this.service.getAnswer(id).subscribe((data) => {
       this.userLogged.subscribe((value) => {
         this.user = value;
-        console.log(this.user?.uid);
-        console.log(this.question?.answers);
       });
       this.answers = data.answers;
     });
@@ -60,9 +58,11 @@ export class RequestionComponent implements OnInit {
   getQuestions(id: string): void {
     this.questionService.getQuestion(id).subscribe((data) => {
       this.question = data;
+
       this.answers = data.answers.sort((a, b) => {
         return b.position - a.position;
       });
+      console.log(this.answers)
       this.answers.map((respuesta) => {
         this.estrellasTotal += respuesta.position;
         this.promedio = this.estrellasTotal / data.answers.length;

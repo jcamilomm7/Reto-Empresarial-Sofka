@@ -84,4 +84,16 @@ export class ServiceService {
       merge: true,
     });
   }
+
+  SignOut() {
+    return this.afauth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in']);
+    });
+  }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
 }
