@@ -1,0 +1,21 @@
+.navbar{
+    background-color: #3CB371
+  }
+
+  .links{
+    text-decoration: none;
+    color: white;
+  }
+
+  .links:hover{
+    font-size: 20px;
+     transition: 1.2s;
+     color:#ff4500;
+     font-weight: 400;
+
+
+  }
+
+  .menu{
+      background-color: red;
+  }

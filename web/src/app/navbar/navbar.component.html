@@ -1,14 +1,41 @@
-  <nav class="navbar bg-light">
-    <div class="container-fluid">
-      <a href="/preguntas">
-          <img src="https://ik.imagekit.io/lvh0tltbeph/SofkaU/logo-sofkau_1Fn3uH-1S.png?ik-sdk-version=javascript-1.4.3&updatedAt=1645658493330" alt="" width="200" height="75">
-        </a>
-        
-        
-        
-      <button type="button" label="Iniciar Sesion" class="p-button-warning" (click)="login()">Inicia sesión</button>
-      
+<nav class="navbar navbar-expand-lg navbar-light  sticky-top" >
+  <div class="container-fluid">
+    < <a href="/preguntas">
+      <img src="https://ik.imagekit.io/lvh0tltbeph/SofkaU/logo-sofkau_1Fn3uH-1S.png?ik-sdk-version=javascript-1.4.3&updatedAt=1645658493330" alt="" width="200" height="75">
+    </a>
 
-     
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav  mx-auto">
+        <li>
+          <a class="px-4 links" routerLink="/preguntas">
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a class="px-4 links"  routerLink="/registro">
+            Registro
+          </a>
+        </li>
+        <li>
+          <a class="px-4 links"  routerLink="/login">
+            Iniciar sesión
+          </a>
+        </li>
+
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

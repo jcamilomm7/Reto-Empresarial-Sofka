@@ -21,6 +21,8 @@ import { ToastModule } from 'primeng/toast';
 import { ToastrModule } from 'ngx-toastr';
 import { RequestionComponent } from './paginas/requestion/requestion.component';
 import { EditComponent } from './paginas/edit/edit.component';
+import { RecuperarPasswordComponent } from './persona/recuperar-password/recuperar-password.component';
+import { VerificarCorreoComponent } from './persona/verificar-correo/verificar-correo.component';
 
 
 
@@ -34,7 +36,9 @@ import { EditComponent } from './paginas/edit/edit.component';
     AnswerComponent,
     QuestionComponent,
     RequestionComponent,
-    EditComponent
+    EditComponent,
+    RecuperarPasswordComponent,
+    VerificarCorreoComponent
 
   ],
   imports: [
