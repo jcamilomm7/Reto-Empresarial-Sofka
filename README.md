@@ -33,6 +33,15 @@ link swagger:https://blog-reto-sofka.herokuapp.com/webjars/swagger-ui/index.html
 El frontend se derarrollo en angular. Posteriormente se desplego y se uso para autenticar los usuarios a firebase.
 ![image](https://user-images.githubusercontent.com/78055368/173258086-ae825a16-893b-46c6-b963-02d3a509260a.png)
 
+link frontend desplegado en firebase: https://blog-reto-sofka.herokuapp.com/
+
+Para correr el frontend a nivel local despues de clonar el proyecto se debe ingresar a la carpeta donde se encuentra el proyecto en angular, acceder a la terminal en esa direccion e ingresar los siguientes comandos:
+
+1. npm update --> actualiza npm
+2. npm install -> descarga los modulos de node necesarios para ejecutar el proyecto.
+3. ng serve -o -> ejecuta el proyecto y lo lanza en el buscador.
+
+
 
 ## Colaboradores
 
