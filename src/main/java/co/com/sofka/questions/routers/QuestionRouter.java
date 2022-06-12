@@ -51,14 +51,7 @@ public class QuestionRouter {
                         .body(BodyInserters.fromPublisher(listUseCase.get(), QuestionDTO.class))
         );
     }
-    @Bean
-    public RouterFunction<ServerResponse> all(ListUseCase listUseCase) {
-        return route(GET("/all"),
-                request -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue("ddd"))
-        );
-    }
+
     @Bean
     public RouterFunction<ServerResponse> all(ListUseCase listUseCase) {
         return route(GET("/all"),
