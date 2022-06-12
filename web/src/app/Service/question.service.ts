@@ -12,7 +12,7 @@ export class QuestionService {
     throw new Error('Method not implemented.');
   }
 
-
+  userData: any ;
   private url: string = 'https://reto-empresarial-sofka.herokuapp.com/';
 
 
@@ -21,6 +21,10 @@ export class QuestionService {
   getPage(page: number): Observable<QuestionI[]> {
     let direction = this.url + 'pagination/' + page;
     return this.http.get<QuestionI[]>(direction);
+  }
+
+  traerDatos1(datos: any){
+    this.userData = datos;
   }
 
   getAnswer(id: any): Observable<QuestionI> {

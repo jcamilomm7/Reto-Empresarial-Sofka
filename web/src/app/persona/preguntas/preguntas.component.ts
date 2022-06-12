@@ -28,6 +28,7 @@ email: any ;
   dataUser: any;
 
 
+
   constructor(
     private service: QuestionService,
     public authService: ServiceService,
@@ -42,16 +43,21 @@ email: any ;
     this.getQuestionsAll();
 
 
-
   }
+  prueba: any;
+
+
 
 
 
   getQuestionsAll(): void {
+    console.log(this.prueba)
+
     this.userData =JSON.parse(localStorage.getItem('user')!);
     this.email = this.userData?.email
     this.service.getQuestionAll().subscribe(value =>{
-      console.log(value)
+      this.service.traerDatos1(value)
+      this.prueba = value
       this.questions = value
       this.totalQuestions = this.questions.length
         this.pages = new Array(Math.ceil(this.totalQuestions / 10))
