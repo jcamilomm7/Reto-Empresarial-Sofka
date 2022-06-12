@@ -29,7 +29,7 @@ public class WebSecurityConfigurationFLux {
         return http.csrf().disable()
                 .cors().disable()
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.GET,"/all").permitAll()
+                .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
 
