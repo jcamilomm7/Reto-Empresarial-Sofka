@@ -15,6 +15,7 @@ import org.springframework.security.web.server.util.matcher.PathPatternParserSer
 import reactor.core.publisher.Mono;
 
 @Configuration
+@EnableWebFluxSecurity
 public class WebSecurityConfigurationFLux {
 
     @Autowired
