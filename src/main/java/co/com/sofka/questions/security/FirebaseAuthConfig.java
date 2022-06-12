@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import reactor.core.publisher.Mono;
+
 import java.io.IOException;
 
 @Configuration
@@ -22,8 +24,12 @@ public class FirebaseAuthConfig {
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream()))
                 .build();
 
+
         var firebaseApp = FirebaseApp.initializeApp(options);
 
+
         return FirebaseAuth.getInstance(firebaseApp);
+
+
     }
 }

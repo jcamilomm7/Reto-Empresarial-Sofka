@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class AuthService {
+
     @Autowired
     private FirebaseAuth firebaseAuth;
 
@@ -20,4 +21,6 @@ public class AuthService {
         log.info("Invoked");
         return firebaseAuth.getUser(uid);
     }
+
+
 }

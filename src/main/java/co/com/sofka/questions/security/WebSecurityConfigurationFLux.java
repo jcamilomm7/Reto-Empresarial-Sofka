@@ -9,22 +9,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 import reactor.core.publisher.Mono;
 
 @Configuration
-@EnableWebFluxSecurity
+//@EnableWebFluxSecurity
 public class WebSecurityConfigurationFLux {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private SecurityContextRepository securityContextRepository;
-
-
     @Bean
     SecurityWebFilterChain springWebFilter(ServerHttpSecurity http) {
-        String[] patterns = new String[] {"/auth/**"};
+
+        http.oauth2ResourceServer()
+                .jwt();
+        return http.csrf().disable()
+                .cors().disable()
+                .authorizeExchange()
+                .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
+                .anyExchange().authenticated()
+                .and().build();
+
+
+
+
+
+/*
+
         return http.cors().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint((swe, e) -> Mono.fromRunnable(() -> {
@@ -33,16 +47,17 @@ public class WebSecurityConfigurationFLux {
                     swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
                 })).and()
                 .csrf().disable()
-
                 .authorizeExchange()
-                .pathMatchers(patterns).permitAll()
-                .pathMatchers(HttpMethod.OPTIONS).permitAll()
+                .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
                 .anyExchange().authenticated()
                 .and()
                 .build();
+*/
+
     }
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 

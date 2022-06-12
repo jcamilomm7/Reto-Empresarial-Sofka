@@ -1,43 +1,37 @@
 package co.com.sofka.questions.security;
 
-import io.jsonwebtoken.Claims;
+import com.google.firebase.auth.FirebaseAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.IOException;
 
-public class AuthenticationManager{
-    /*
+@Component
+public class AuthenticationManager implements ReactiveAuthenticationManager {
+
     @Autowired
-    private TokenProvider tokenProvider;
+    private FirebaseAuthConfig firebaseAuthConfig;
 
     @Override
     @SuppressWarnings("unchecked")
-    public Mono<Authentication> authenticate(Authentication authentication) {
+    public Mono authenticate(Authentication authentication) {
         String authToken = authentication.getCredentials().toString();
         String username;
+        FirebaseAuth auth= null;
         try {
-            username = tokenProvider.getUsernameFromToken(authToken);
-        } catch (Exception e) {
-            username = null;
+            auth = firebaseAuthConfig.firebaseAuth();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        if (username != null && ! tokenProvider.isTokenExpired(authToken)) {
-            Claims claims = tokenProvider.getAllClaimsFromToken(authToken);
-            List roles = claims.get(AUTHORITIES_KEY, List.class);
-            List authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, username, authorities);
-            SecurityContextHolder.getContext().setAuthentication(new AuthenticatedUser(username, authorities));
+
+        if (auth != null ) {
+
             return Mono.just(auth);
         } else {
             return Mono.empty();
         }
     }
-
-     */
 }

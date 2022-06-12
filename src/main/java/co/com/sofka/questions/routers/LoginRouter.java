@@ -7,18 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.security.Principal;
 
-
+//@RestController
+//@RequestMapping("/")
 public class LoginRouter {
 
-    @Autowired
-    private AuthService authService;
 
-    @GetMapping(path = "/test")
-    public String test(Principal principal) throws FirebaseAuthException {
 
-        return "FUnccciona";
+    //@GetMapping(path = "/test")
+    public Mono<String> test(Principal principal) throws FirebaseAuthException {
+
+        return Mono.just("FUnccciona");
     }
 }
