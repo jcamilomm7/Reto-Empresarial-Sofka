@@ -15,7 +15,6 @@ import org.springframework.security.web.server.util.matcher.PathPatternParserSer
 import reactor.core.publisher.Mono;
 
 @Configuration
-@EnableWebFluxSecurity
 public class WebSecurityConfigurationFLux {
 
     @Autowired
@@ -28,7 +27,7 @@ public class WebSecurityConfigurationFLux {
                 .jwt();
         return http
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.GET,"/**").permitAll()
+                .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
 

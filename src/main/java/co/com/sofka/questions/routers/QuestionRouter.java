@@ -30,7 +30,6 @@ import java.util.function.Function;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @Configuration
 public class QuestionRouter {
 
