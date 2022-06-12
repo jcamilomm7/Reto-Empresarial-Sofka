@@ -20,14 +20,15 @@ public class AnswerDTO {
 
     }
 
-    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, Integer position) {
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
+        this.position=position;
     }
 
     public Integer getPosition() {
-        return Optional.ofNullable(position).orElse(1);
+        return Optional.ofNullable(this.position).orElse(1);
     }
 
     public void setPosition(Integer position) {
