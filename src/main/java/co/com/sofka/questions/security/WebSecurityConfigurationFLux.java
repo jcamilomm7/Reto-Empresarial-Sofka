@@ -26,8 +26,7 @@ public class WebSecurityConfigurationFLux {
 
         http.oauth2ResourceServer()
                 .jwt();
-        return http.csrf().disable()
-                .cors().disable()
+        return http
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
                 .anyExchange().authenticated()
