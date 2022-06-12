@@ -85,9 +85,10 @@ export class ServiceService {
     });
   }
 
-  SignOut() {
-    return this.afauth.signOut().then(() => {
+  async SignOut() {
+    return await this.afauth.signOut().then(() => {
       localStorage.removeItem('user');
+      
       this.router.navigate(['sign-in']);
     });
   }

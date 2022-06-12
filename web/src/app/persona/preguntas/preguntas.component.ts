@@ -15,10 +15,8 @@ export class PreguntasComponent implements OnInit {
   userLogged = this.authService.getUserLogged();
   uid: any;
 userData: any
-email: any ;
-
-  totalQuestions: number = 0;
-
+email: any
+totalQuestions: number = 0
   questions: any | undefined;
 
   user: any = '';
@@ -51,12 +49,11 @@ email: any ;
 
 
   getQuestionsAll(): void {
-    console.log(this.prueba)
-
     this.userData =JSON.parse(localStorage.getItem('user')!);
     this.email = this.userData?.email
+    console.log(this.userData?.stsTokenManager?.accessToken)
     this.service.getQuestionAll().subscribe(value =>{
-      this.service.traerDatos1(value)
+
       this.prueba = value
       this.questions = value
       this.totalQuestions = this.questions.length

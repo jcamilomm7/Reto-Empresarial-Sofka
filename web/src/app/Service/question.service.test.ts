@@ -1,9 +1,8 @@
-import {QuestionService } from './question.service';
-
+/* import { QuestionService } from './question.service';
 import { of, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
-describe('Service: Preguntas', () => {
+describe('Service: User', () => {
   let httpClientSpy: { get: jasmine.Spy };
   let questionService: QuestionService;
 
@@ -13,23 +12,18 @@ describe('Service: Preguntas', () => {
   });
 
   it('should return expected users (HttpClient called once)', () => {
-    const expectedQuestions = [{
-      userId:"Fe2okn0Xfsd9ugmSkb9rEmfSWVA2",
-      question:"camilo",
-      type:"camilo",
-      category:"camilo"
-    }
+    const expectedQuestion = [
+      { id: 1, name: 'A' },
+      { id: 2, name: 'B' }
     ];
 
-    httpClientSpy.get.and.returnValue(of(expectedQuestions));
+    httpClientSpy.get.and.returnValue(of(expectedQuestion));
 
-    questionService.getQuestionAll();
+    questionService.getQuestionPrueba
 
-    expect(questionService.userData.length).toBe(1);
-
-    /* expect(questionService.users.length).toBe(2);
-    expect(userService.users[0]['name']).toBe('A'); */
-    /* expect(httpClientSpy.get.calls.count()).toBe(1, 'one call'); */
+    expect(questionService.users.length).toBe(2);
+    expect(questionService.users[0]['name']).toBe('A');
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 
   it('should return an error when the server returns a 404', () => {
@@ -41,8 +35,9 @@ describe('Service: Preguntas', () => {
 
     httpClientSpy.get.and.returnValue(throwError(errorResponse));
 
-    questionService.getQuestionAll();
+    userService.getUsers();
 
-    expect(questionService.userData).toBeUndefined();
+    expect(userService.users).toBeUndefined();
   });
-});
+ });
+*/

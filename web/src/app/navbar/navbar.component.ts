@@ -40,10 +40,12 @@ export class NavbarComponent implements OnInit {
     this.route.navigate(['login']);
   }
 
-  logOut() {
+  SignOut() {
     this.authService.SignOut();
     this.route.navigate(['login']);
   }
+
+
 
 
 }
