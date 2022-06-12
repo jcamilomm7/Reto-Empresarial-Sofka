@@ -28,7 +28,7 @@ public class WebSecurityConfigurationFLux {
                 .jwt();
         return http
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.GET,"/getAll").permitAll()
+                .pathMatchers(HttpMethod.GET,"/**").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
 
