@@ -11,15 +11,25 @@ Las caracteristicas que se implementaron en el reto fueron:
 - Autenticación de Gmail
 - Restablecer contraseña
 - Sistema para calificación de las respuestas
+- Editar respuestas
 - Implementar JWT
 - Uso adecuado de Observable en Angular
 - Uso de algún frameworks o preprocesador CSS
 - Uso de Swagger
 - Páginador de Preguntas
+- scroll infinito
 
 ## Backend
 El backend se derrallo de forma reactiva en spring boot. Posteriormente se hizo el despliegue en heroku.
 link backend desplegado en heroku:https://blog-reto-sofka.herokuapp.com/
+
+-Se realziaron todas las pruebas de los casos de uso
+-Se realiza una prueba al endpoint de getAll, para practicar este tipo de prueba.
+
+-se implementa springboot security en el back y lo enlazamos con firebase para que realice la autenticacion y asi poder permitir el consumo de endpoint a los usuarios logueados , Nota: esta parte solo quedo funcional de manera local, ya que presento problemas de manera remoto.
+
+
+Para la persistencia de datos se utilizo la base de datos no relacional mongoDB Reactivo en el espacio gratuito en la nube que nos brinda mongoDb atlas.
 
 
 ### Swagger
@@ -33,7 +43,7 @@ link swagger:https://blog-reto-sofka.herokuapp.com/webjars/swagger-ui/index.html
 El frontend se derarrollo en angular. Posteriormente se desplego y se uso para autenticar los usuarios a firebase.
 ![image](https://user-images.githubusercontent.com/78055368/173258086-ae825a16-893b-46c6-b963-02d3a509260a.png)
 
-link frontend desplegado en firebase: https://blog-reto-sofka.herokuapp.com/
+link frontend desplegado en firebase: https://login-55f6e.firebaseapp.com/preguntas
 
 Para correr el frontend a nivel local despues de clonar el proyecto se debe ingresar a la carpeta donde se encuentra el proyecto en angular, acceder a la terminal en esa direccion e ingresar los siguientes comandos:
 
@@ -46,4 +56,5 @@ Para correr el frontend a nivel local despues de clonar el proyecto se debe ingr
 ## Colaboradores
 
 Julian Camilo Mesa
+
 Luis Felipe Rivas
