@@ -59,10 +59,15 @@ export class AnswerComponent implements OnInit {
             summary: 'Se ha agregado la respuesta',
             
            });
-           setTimeout(() => {
+          /*  setTimeout(() => {
            window.location.reload();
-         }, 1000);
+
+         }, 1000); */
+         this.route.navigate(['/preguntas'])
+        }
+
         }        
+
       },
       error: (e) =>
       this.messageService.add({

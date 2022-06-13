@@ -2,6 +2,7 @@ package co.com.sofka.questions.routers;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.usecases.*;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -9,17 +10,21 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.security.OAuthFlow;
 import org.springdoc.core.annotations.RouterOperation;
 import org.springdoc.core.annotations.RouterOperations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
 import java.util.function.Function;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
@@ -29,7 +34,6 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class QuestionRouter {
 
     @Bean
-
     @RouterOperation(path = "/getAll"
             , produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.GET, beanClass = ListUseCase.class, beanMethod = "get",
@@ -48,6 +52,16 @@ public class QuestionRouter {
     }
 
     @Bean
+    public RouterFunction<ServerResponse> all(ListUseCase listUseCase) {
+        return route(GET("/all"),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue("ssss"))
+        );
+    }
+
+
+    @Bean
 
     @RouterOperation(path = "/getOwnerAll/{Id}"
             , produces = {
@@ -60,11 +74,11 @@ public class QuestionRouter {
     )
     public RouterFunction<ServerResponse> getOwnerAll(OwnerListUseCase ownerListUseCase) {
         return route(
-                GET("/getOwnerAll/{userId}"),
+                GET("/getOwnerAll/{Id}"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(
-                                ownerListUseCase.apply(request.pathVariable("userId")),
+                                ownerListUseCase.apply(request.pathVariable("Id")),
                                 QuestionDTO.class
                          ))
         );

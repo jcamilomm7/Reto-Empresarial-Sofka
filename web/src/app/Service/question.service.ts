@@ -13,7 +13,11 @@ export class QuestionService {
   }
 
 
-  private url: string = 'http://localhost:8080/';
+  userData: any ;
+  private url: string = 'https://blog-reto-sofka.herokuapp.com/';
+
+
+
 
 
   constructor(private http: HttpClient) {}
@@ -21,6 +25,10 @@ export class QuestionService {
   getPage(page: number): Observable<QuestionI[]> {
     let direction = this.url + 'pagination/' + page;
     return this.http.get<QuestionI[]>(direction);
+  }
+
+  traerDatos1(datos: any){
+    this.userData = datos;
   }
 
   getAnswer(id: any): Observable<QuestionI> {
@@ -51,9 +59,9 @@ export class QuestionService {
 
   saveQuestion(question: QuestionI): Observable<any> {
     let direction = this.url + 'create';
-    return this.http.post<any>(direction, question, {
+    return this.http.post<any>(direction, question)/* {
       responseType: 'text' as 'json',
-    });
+    }); */
   }
 
   saveAnswer(answer: AnswerI): Observable<any> {

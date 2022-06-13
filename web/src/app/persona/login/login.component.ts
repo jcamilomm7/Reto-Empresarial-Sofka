@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService, Message } from 'primeng/api';
@@ -30,36 +31,43 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private authService: ServiceService,
-    private route: Router
+    private route: Router,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit(): void {}
 
   ingresar() {
-    this.mostrar = !this.mostrar;
-    this.authService
-      .login(this.form.value.email, this.form.value.password)
-      .then((res) => {       
-        if (res == undefined) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Rectifique los datos',
-            detail: 'Clave o Usuario incorrecto, Intente de Nuevo',
-          });
-        } else {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Bienvenido',
-            detail: 'Disfruta de tu estadía',
-          });
-          this.route.navigate(['preguntas']);
-        }
+    const email = this.form.value.email;
+    const password = this.form.value.password;
 
-        this.mostrar = !this.mostrar;
-      });
+    this.mostrar = !this.mostrar;
+    this.afAuth.signInWithEmailAndPassword(email, password).then((user) => {
+      if (user.user?.emailVerified) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Bienvenido',
+          detail: 'Disfruta de tu estadía',
+        });
+
+        /* probando */
+        this.authService.almacenarLocalStorage();
+
+        /* aca termina */
+        this.route.navigate(['preguntas']);
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rectifique los datos',
+          detail: 'Clave o Usuario incorrecto, Intente de Nuevo',
+        });
+      }
+
+      this.mostrar = !this.mostrar;
+    });
   }
   ingresarGoogle() {
-    this.mostrar = !this.mostrar;       
+    this.mostrar = !this.mostrar;
     this.authService
       .loginGoogle(this.form.value.email, this.form.value.password)
       .then((res) => {
@@ -72,23 +80,20 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.route.navigate(['preguntas']);
           }, 3000);
-
         } else {
           this.messageService.add({
             severity: 'error',
             summary: 'Rectifique los datos',
             detail: 'Clave o Usuario incorrecto, Intente de Nuevo',
           });
-          
         }
         this.mostrar = !this.mostrar;
       });
   }
   getUserLogged() {
-    this.authService.getUserLogged().subscribe((res) => {     
-    });
+    this.authService.getUserLogged().subscribe((res) => {});
   }
- 
+
   preguntasHome() {
     this.route.navigate(['preguntas']);
   }

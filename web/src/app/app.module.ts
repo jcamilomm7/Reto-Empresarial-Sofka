@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNGModule } from './prime-ng/prime-ng.module';
@@ -21,6 +21,8 @@ import { ToastModule } from 'primeng/toast';
 import { ToastrModule } from 'ngx-toastr';
 import { RequestionComponent } from './paginas/requestion/requestion.component';
 import { EditComponent } from './paginas/edit/edit.component';
+import { RecuperarPasswordComponent } from './persona/recuperar-password/recuperar-password.component';
+import { VerificarCorreoComponent } from './persona/verificar-correo/verificar-correo.component';
 
 
 
@@ -30,12 +32,14 @@ import { EditComponent } from './paginas/edit/edit.component';
     LoginComponent,
     PreguntasComponent,
     NavbarComponent,
-    RegistroComponent, 
+    RegistroComponent,
     AnswerComponent,
     QuestionComponent,
     RequestionComponent,
-    EditComponent
-       
+    EditComponent,
+    RecuperarPasswordComponent,
+    VerificarCorreoComponent
+
   ],
   imports: [
     BrowserModule,
@@ -47,10 +51,11 @@ import { EditComponent } from './paginas/edit/edit.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot()
-    
-   
-    
+    ToastrModule.forRoot(),
+    NgxPaginationModule
+
+
+
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
