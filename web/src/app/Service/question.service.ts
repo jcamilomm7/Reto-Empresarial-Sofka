@@ -12,8 +12,12 @@ export class QuestionService {
     throw new Error('Method not implemented.');
   }
 
+
   userData: any ;
   private url: string = 'https://blog-reto-sofka.herokuapp.com/';
+
+
+
 
 
   constructor(private http: HttpClient) {}

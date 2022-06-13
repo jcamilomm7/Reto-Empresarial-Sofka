@@ -54,7 +54,9 @@ totalQuestions: number = 0
     console.log(this.userData?.stsTokenManager?.accessToken)
     this.service.getQuestionAll().subscribe(value =>{
 
+
       this.prueba = value
+
       this.questions = value
       this.totalQuestions = this.questions.length
         this.pages = new Array(Math.ceil(this.totalQuestions / 10))
