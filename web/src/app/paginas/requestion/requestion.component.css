@@ -1,11 +1,11 @@
-/* .container{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 60vh;
 
-} 
+}
 
 .promedio-calificacion{
   margin-left: 35%;
@@ -16,4 +16,4 @@
   margin-top: 40px;
 }
 
-} 
+
